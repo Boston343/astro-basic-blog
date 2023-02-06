@@ -3,11 +3,10 @@ import MainLayout from "../layouts/MainLayout.astro";
 ---
 
 <MainLayout title="About">
-  <h1>About page!</h1>
+  <h1 id="about__title" class="text-5xl bg-blue-500">About page!</h1>
 </MainLayout>
 
-<style>
-  h1 {
-    background-color: gold;
-  }
-</style>
+<script>
+  const p = document.querySelector("#about__title");
+  p.textContent = "hi";
+</script>
