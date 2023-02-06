@@ -1,20 +1,7 @@
 ---
-const temp = ["Hello", "World!"];
+import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-    {
-      temp.map(item => ( 
-        <p>{item}</p>
-      ))       
-    }
-	</body>
-</html>
+<MainLayout title="Homepage">
+  <h1>This is my home!</h1>
+</MainLayout>
