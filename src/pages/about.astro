@@ -1,14 +1,8 @@
 ---
-import Button from "../components/Button";
+// component imports
 import MainLayout from "../layouts/MainLayout.astro";
 ---
 
-<MainLayout title="About">
-  <h1 id="about__title" class="text-5xl bg-blue-500">About page!</h1>
-  <Button client:load />
+<MainLayout title="About" description="My About Page">
+  <p>hi from About</p>
 </MainLayout>
-
-<script>
-  const p = document.querySelector("#about__title");
-  p.textContent = "hi";
-</script>

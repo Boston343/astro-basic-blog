@@ -1,16 +1,17 @@
 ---
-const { title } = Astro.props;
+// component import
+import MainHead from "./MainHead.astro";
+
+// defaults if nothing is passed
+const {
+  title = "My Astro Blog",
+  description = "Learning how to make a blog with Astro",
+} = Astro.props;
 ---
 
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-  </head>
+  <MainHead title={title} description={description} />
   <body>
-    <slot> Default if nothing is passed in</slot>
+    <slot> Default Text</slot>
   </body>
 </html>
