@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "private": true,
-  "browserlist": [
+  "browserslist": [
     "defaults"
   ],
   "scripts": {
@@ -15,12 +15,9 @@
   },
   "dependencies": {
     "@astrojs/react": "^2.0.2",
-    "@astrojs/tailwind": "^3.0.1",
     "astro": "^2.0.13",
-    "postcss": "^8.4.21",
-    "postcss-preset-env": "^8.0.1",
+    "astro-icon": "^0.8.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tailwindcss": "^3.2.4"
+    "react-dom": "^18.2.0"
   }
 }
