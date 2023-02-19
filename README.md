@@ -1,4 +1,8 @@
-# Astro Starter Kit: Minimal
+# Astro Basic Blog
+
+Starting with this [video from Coding in Public](https://www.youtube.com/watch?v=6XzyobQYQVQ)
+
+## Astro Starter Kit: Minimal
 
 ```
 npm create astro@latest -- --template minimal
