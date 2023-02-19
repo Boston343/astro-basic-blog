@@ -758,6 +758,9 @@ header .container {
   box-shadow: 0.2px 0.5px 0.6px #8186bb4a, 0.6px 1.5px 1.8px -0.8px #8186bb4a,
     1.6px 3.8px 4.6px -1.7px #8186bb4a, 3.9px 9.3px 11.3px -2.5px #8186bb4a;
   box-shadow: var(--shadow-md);
+  display: flex;
+  width: 100%;
+  height: auto;
   -o-object-fit: cover;
   object-fit: cover;
 }

@@ -2,11 +2,21 @@
 // component imports
 import Link from "../components/Link/Link.astro";
 import MainLayout from "../layouts/MainLayout.astro";
+
+// library import
+import { Image, Picture } from "@astrojs/image/components";
 ---
 
 <MainLayout title="About" description="My About Page">
   <section class="container about" aria-label="About Me">
-    <img src="/images/ReaperBowTie.jpg" alt="Web Reaper Image" />
+    <Image
+      src="/images/ReaperBowTie.jpg"
+      alt="Web Reaper Image"
+      width={400}
+      height={400}
+      format="webp"
+      quality={80}
+    />
     <div class="content">
       <h1 class="h1">My Blog</h1>
       <p>
