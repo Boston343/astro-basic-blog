@@ -25,6 +25,10 @@ const {
   classes,
   ...rest
 } = Astro.props as Props;
+
+if (icon) {
+  console.log(icon);
+}
 ---
 
 <a

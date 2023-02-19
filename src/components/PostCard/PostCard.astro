@@ -12,7 +12,6 @@ const { post, tagType } = Astro.props;
 const { frontmatter, url } = post;
 const Tag = tagType; // necessary to use as component
 const { title, date, author, image, category, description } = frontmatter;
-console.log("post: ", Astro.props);
 ---
 
 <article class="card">
