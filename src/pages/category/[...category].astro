@@ -1,0 +1,52 @@
+---
+// component imports
+import MainLayout from "../../layouts/MainLayout.astro";
+import PostCard from "../../components/PostCard/PostCard.astro";
+
+// utils
+import { slugify, formatBlogPosts } from "../../js/utils";
+
+export async function getStaticPaths() {
+  const allPosts = await Astro.glob("../blog/*.md");
+
+  // get all blog posts formatted in whatever way desired
+  const formattedPosts = formatBlogPosts(allPosts, {
+    filterOutDrafts: true,
+    filterOutFuturePosts: true,
+    sortByDate: true,
+    limit: undefined,
+  });
+
+  // loop through all posts and grab the authors
+  // if author already exists it's not going to be placed twice
+  const allCategories = [
+    ...new Set(formattedPosts.map((post) => post.frontmatter.category).flat()),
+  ];
+
+  return allCategories.map((category) => {
+    // const authorPosts = formattedPosts.filter(
+    //   (post) => post.frontmatter.author === author
+    // );
+    const categoryPosts = formattedPosts.filter(function (post) {
+      return post.frontmatter.category === category;
+    });
+
+    return {
+      params: { category: slugify(category) },
+      props: { categoryName: category, posts: categoryPosts },
+    };
+  });
+}
+
+const { category } = Astro.params;
+const { categoryName, posts } = Astro.props;
+---
+
+<MainLayout title="My Blog">
+  <section class="container" aria-label={`Posts about ${categoryName}`}>
+    <h1 class="h1">Posts about <span>{categoryName}</span></h1>
+    <div class="post-container">
+      {posts.map((post) => <PostCard {post} tagType="h2" />)}
+    </div>
+  </section>
+</MainLayout>
