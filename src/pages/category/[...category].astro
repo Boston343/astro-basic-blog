@@ -24,8 +24,8 @@ export async function getStaticPaths() {
   ];
 
   return allCategories.map((category) => {
-    // const authorPosts = formattedPosts.filter(
-    //   (post) => post.frontmatter.author === author
+    // const categoryPosts = formattedPosts.filter(
+    //   (post) => post.frontmatter.category === category
     // );
     const categoryPosts = formattedPosts.filter(function (post) {
       return post.frontmatter.category === category;
