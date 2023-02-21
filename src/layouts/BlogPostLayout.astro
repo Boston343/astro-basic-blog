@@ -1,11 +1,36 @@
 ---
 // component imports
-import CategoryCloud from "../components/CategoryCloud/CategoryCloud.astro";
 import PostHeader from "../components/PostHeader/PostHeader.astro";
 import MainLayout from "./MainLayout.astro";
+import CategoryCloud from "../components/CategoryCloud/CategoryCloud.astro";
+import RelatedPosts from "../components/RelatedPosts/RelatedPosts.astro";
+
+// utils import
+import { formatBlogPosts, slugify } from "../js/utils";
 
 const { frontmatter } = Astro.props;
 const { title, date, author, image, description, category } = frontmatter;
+
+const allPosts = await Astro.glob("../pages/blog/*.md");
+const formattedPosts = formatBlogPosts(allPosts, {
+  filterOutDrafts: true,
+  filterOutFuturePosts: true,
+  sortByDate: false,
+  limit: undefined,
+});
+
+// now we have all posts (including this post)
+// filter posts to only add posts that have same category and not same name
+const relatedPosts = formattedPosts
+  .filter((post) => {
+    return (
+      post.frontmatter.category.toLowerCase() === category.toLowerCase() &&
+      post.frontmatter.title !== title
+    );
+  })
+  .slice(0, 3); // only get 3 posts
+
+// console.log(relatedPosts);
 ---
 
 <MainLayout title={title} description={description}>
@@ -20,6 +45,14 @@ const { title, date, author, image, description, category } = frontmatter;
         <h2 class="h3">Blog Categories</h2>
         <CategoryCloud />
       </aside>
+      {
+        relatedPosts.length > 0 && (
+          <aside class="container" aria-label="Related posts">
+            <h2 class="h3">Related Posts</h2>
+            <RelatedPosts {relatedPosts} />
+          </aside>
+        )
+      }
     </div>
   </div>
 </MainLayout>

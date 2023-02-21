@@ -17,8 +17,8 @@ export async function getStaticPaths() {
     limit: undefined,
   });
 
-  // loop through all posts and grab the authors
-  // if author already exists it's not going to be placed twice
+  // loop through all posts and grab the categories
+  // if category already exists it's not going to be placed twice
   const allCategories = [
     ...new Set(formattedPosts.map((post) => post.frontmatter.category).flat()),
   ];

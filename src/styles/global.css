@@ -40,11 +40,14 @@ h6 {
   --txt--dark: var(--_hue) 20% 85%;
   --accent--dark: var(--_hue) 50% 50%;
   --muted--dark: var(--_hue) 20% 2%;
+
+  /* light color scheme */
   --bkg: var(--bkg--light);
   --txt: var(--txt--light);
   --accent: var(--accent--light);
   --muted: var(--muted--light);
   color-scheme: light;
+
   --space-2xs: max(0.31rem, min(calc(0.18rem + 0.65vw), 0.69rem));
   --space-xs: max(0.56rem, min(calc(0.39rem + 0.87vw), 1.06rem));
   --space-sm: max(0.88rem, min(calc(0.7rem + 0.87vw), 1.38rem));
@@ -131,7 +134,7 @@ h6 {
   }
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --bkg: var(--bkg--dark);
     --txt: var(--txt--dark);
@@ -142,7 +145,7 @@ h6 {
     --_shadow-saturation: 75%;
     --_shadow-lightness: 6%;
   }
-} */
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,
