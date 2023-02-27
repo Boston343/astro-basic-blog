@@ -1,4 +1,6 @@
 ---
+import { getCollection, CollectionEntry } from "astro:content";
+
 // component imports
 import MainLayout from "../../layouts/MainLayout.astro";
 import PostCard from "../../components/PostCard/PostCard.astro";
@@ -7,10 +9,11 @@ import PostCard from "../../components/PostCard/PostCard.astro";
 import { slugify, formatBlogPosts } from "../../js/utils";
 
 export async function getStaticPaths() {
-  const allPosts = await Astro.glob("../blog/*.md");
+  // const allPosts = await Astro.glob("../blog/*.md");
+  const allPosts = await getCollection("blog");
 
   // get all blog posts formatted in whatever way desired
-  const formattedPosts = formatBlogPosts(allPosts, {
+  const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts, {
     filterOutDrafts: true,
     filterOutFuturePosts: true,
     sortByDate: true,
@@ -20,15 +23,15 @@ export async function getStaticPaths() {
   // loop through all posts and grab the categories
   // if category already exists it's not going to be placed twice
   const allCategories = [
-    ...new Set(formattedPosts.map((post) => post.frontmatter.category).flat()),
+    ...new Set(formattedPosts.map((post) => post.data.category).flat()),
   ];
 
   return allCategories.map((category) => {
     // const categoryPosts = formattedPosts.filter(
-    //   (post) => post.frontmatter.category === category
+    //   (post) => post.data.category === category
     // );
     const categoryPosts = formattedPosts.filter(function (post) {
-      return post.frontmatter.category === category;
+      return post.data.category === category;
     });
 
     return {

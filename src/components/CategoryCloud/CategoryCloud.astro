@@ -1,17 +1,18 @@
 ---
+import { getCollection, CollectionEntry } from "astro:content";
+
 // utils import
 import { formatBlogPosts, slugify } from "../../js/utils";
 
-const allPosts = await Astro.glob("../../pages/blog/*.md");
-const formattedPosts = formatBlogPosts(allPosts, {
+// const allPosts = await Astro.glob("../../pages/blog/*.md");
+const allPosts = await getCollection("blog");
+const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts, {
   filterOutDrafts: true,
   filterOutFuturePosts: true,
   sortByDate: true,
   limit: undefined,
 });
-const allCategories = formattedPosts
-  .map((cat) => cat.frontmatter.category.toLowerCase())
-  .flat();
+const allCategories = formattedPosts.map((cat) => cat.data.category).flat();
 
 const processedCategories = allCategories.reduce((acc, category) => {
   // check if the category exists in the acc

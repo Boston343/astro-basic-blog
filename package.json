@@ -14,10 +14,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/image": "^0.15.0",
+    "@astrojs/image": "^0.15.1",
     "@astrojs/react": "^2.0.2",
-    "@astrojs/sitemap": "^1.0.1",
-    "astro": "^2.0.14",
+    "@astrojs/rss": "^2.1.1",
+    "@astrojs/sitemap": "^1.1.0",
+    "astro": "^2.0.15",
     "astro-icon": "^0.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

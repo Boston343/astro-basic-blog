@@ -1,4 +1,6 @@
 ---
+import { getCollection, CollectionEntry } from "astro:content";
+
 // component imports
 import MainLayout from "../../layouts/MainLayout.astro";
 import PostCard from "../../components/PostCard/PostCard.astro";
@@ -7,10 +9,11 @@ import PostCard from "../../components/PostCard/PostCard.astro";
 import { slugify, formatBlogPosts } from "../../js/utils";
 
 export async function getStaticPaths() {
-  const allPosts = await Astro.glob("../blog/*.md");
+  // const allPosts = await Astro.glob("../blog/*.md");
+  const allPosts = await getCollection("blog");
 
   // get all blog posts formatted in whatever way desired
-  const formattedPosts = formatBlogPosts(allPosts, {
+  const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts, {
     filterOutDrafts: true,
     filterOutFuturePosts: true,
     sortByDate: true,
@@ -20,15 +23,15 @@ export async function getStaticPaths() {
   // loop through all posts and grab the authors
   // if author already exists it's not going to be placed twice
   const allAuthors = [
-    ...new Set(formattedPosts.map((post) => post.frontmatter.author).flat()),
+    ...new Set(formattedPosts.map((post) => post.data.author).flat()),
   ];
 
   return allAuthors.map((author) => {
     // const authorPosts = formattedPosts.filter(
-    //   (post) => post.frontmatter.author === author
+    //   (post) => post.data.author === author
     // );
     const authorPosts = formattedPosts.filter(function (post) {
-      return post.frontmatter.author === author;
+      return post.data.author === author;
     });
 
     return {
@@ -36,6 +39,11 @@ export async function getStaticPaths() {
       props: { authorName: author, posts: authorPosts },
     };
   });
+}
+
+interface Props {
+  posts: CollectionEntry<"blog">[];
+  authorName: string;
 }
 
 const { author } = Astro.params;

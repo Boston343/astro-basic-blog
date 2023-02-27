@@ -1,4 +1,6 @@
 ---
+import { getCollection, CollectionEntry } from "astro:content";
+
 // component imports
 import MainLayout from "../../layouts/MainLayout.astro";
 import PostCard from "../../components/PostCard/PostCard.astro";
@@ -9,8 +11,9 @@ import CategoryCloud from "../../components/CategoryCloud/CategoryCloud.astro";
 import { formatBlogPosts } from "../../js/utils";
 
 export async function getStaticPaths({ paginate }) {
-  const allPosts = await Astro.glob("./*.md");
-  const formattedPosts = formatBlogPosts(allPosts, {
+  // const allPosts = await Astro.glob("./*.md");
+  const allPosts = await getCollection("blog");
+  const formattedPosts: CollectionEntry<"blog">[] = formatBlogPosts(allPosts, {
     filterOutDrafts: true,
     filterOutFuturePosts: true,
     sortByDate: true,
