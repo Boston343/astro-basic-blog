@@ -50,7 +50,7 @@ const { author } = Astro.params;
 const { authorName, posts } = Astro.props;
 ---
 
-<MainLayout title="My Blog">
+<MainLayout title="My Blog" description="author page">
   <section class="container" aria-label={`Posts by ${authorName}`}>
     <h1 class="h1">Posts by <span>{authorName}</span></h1>
     <div class="post-container">

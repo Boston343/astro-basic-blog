@@ -32,7 +32,7 @@ interface Props {
 }
 
 const { post } = Astro.props as Props;
-const { title, date, author, image, description, category } = post.data;
+const { title, date, author, image, description, category, robots } = post.data;
 
 // render method gets Content and a bunch of other things
 const { Content } = await post.render();
@@ -56,7 +56,13 @@ const relatedPosts = formattedPosts
 // console.log(post);
 ---
 
-<MainLayout title={title} description={description}>
+<MainLayout
+  title={title}
+  description={description}
+  image={image}
+  frontmatter={post.data}
+  robots={robots}
+>
   <PostHeader {...post} />
 
   <div class="post-content">

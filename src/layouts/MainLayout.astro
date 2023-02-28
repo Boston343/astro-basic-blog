@@ -7,15 +7,35 @@ import Footer from "../components/Footer/Footer.astro";
 // style import
 import "../styles/global.css";
 
+export interface Props {
+  title: string;
+  description: string;
+  image?: {
+    src?: string;
+    alt?: string;
+  };
+  frontmatter?: any;
+  robots?: boolean;
+}
+
 // defaults if nothing is passed
 const {
   title = "My Astro Blog",
   description = "Learning how to make a blog with Astro",
-} = Astro.props;
+  image,
+  frontmatter,
+  robots,
+} = Astro.props as Props;
 ---
 
 <html lang="en">
-  <MainHead title={title} description={description} />
+  <MainHead
+    title={title}
+    description={description}
+    image={image}
+    frontmatter={frontmatter}
+    robots={robots}
+  />
   <body>
     <Nav />
     <main>

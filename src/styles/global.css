@@ -134,7 +134,7 @@ h6 {
   }
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --bkg: var(--bkg--dark);
     --txt: var(--txt--dark);
@@ -145,7 +145,7 @@ h6 {
     --_shadow-saturation: 75%;
     --_shadow-lightness: 6%;
   }
-} */
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,

@@ -19,6 +19,7 @@ const blog = defineCollection({
       ),
     draft: z.boolean().default(false),
     category: z.enum(["CSS", "Reference Docs", "Astro", "General"]),
+    robots: z.boolean().default(false),
   }),
 });
 

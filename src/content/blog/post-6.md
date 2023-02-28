@@ -6,6 +6,7 @@ image: { src: "/images/post-6.jpg", alt: "A picture of a coder" }
 description: In this project, we’ll build out a custom Astro component for post tags.
 draft: false
 category: Astro
+robots: false
 ---
 
 Nisi duis ex aliqua eu officia eiusmod duis magna pariatur. Irure laborum qui aliqua nulla esse cillum laborum aliquip nulla elit. Id id Lorem duis irure cillum culpa. Nulla sint et aliqua velit do. Nulla sit sit proident consectetur enim ullamco aliqua in reprehenderit ullamco officia.
